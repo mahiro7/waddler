@@ -1,0 +1,76 @@
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.post_index_path(@socket, :index)}>
+    <.live_component
+      module={WaddlerWeb.PostLive.FormComponent}
+      id={@post.id || :new}
+      title={@page_title}
+      action={@live_action}
+      post={@post}
+      return_to={Routes.post_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<div class="bg-unsplash-[RHpuSz0]">
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">Your Feed</h3>
+      <p class="mt-1 max-w-2xl text-sm text-gray-500"></p>
+    </div>
+    <div class="border-t border-gray-200">
+      <dl>
+        <%= for {post, counter} <- Enum.with_index(@posts) do %>
+          <%= raw "<div class=" <> if rem(counter, 2) != 0, do: "\"bg-white px-4 py-5\">", else: "\"bg-gray-50 px-4 py-5\">" %>
+            <div class="bg-[url('https://images.unsplash.com/photo-1648636102089-4af17a90e18e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2113&q=80')] w-full h-full flex p-4">
+              <div class="rounded-full border-black border-2 flex w-12 h-12 mr-3">
+              <!--<img class="w-full object-contain min-h-0" src="https://images.unsplash.com/photo-1648636102089-4af17a90e18e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2113&q=80" >-->
+                
+              </div>
+              <div class="text-area">
+                <p><%= post.user %></p>
+                <p style="white-space: pre-line"><%= post.content %></p>
+                <p><%= counter %></p>
+              </div>
+            </div>
+          <%= raw "</div>" %>
+        <%= end %>
+      </dl>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Content</th>
+      <th>Likes</th>
+      <th>Retweets</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="posts">
+    <%= for post <- @posts do %>
+      <tr id={"post-#{post.id}"}>
+        <td><%= post.user %></td>
+        <td><%= post.content %></td>
+        <td><%= post.likes %></td>
+        <td><%= post.retweets %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.post_show_path(@socket, :show, post) %></span>
+          <span><%= live_patch "Edit", to: Routes.post_index_path(@socket, :edit, post) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: post.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Post", to: Routes.post_index_path(@socket, :new) %></span>
+
+-->
