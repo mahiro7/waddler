@@ -12,29 +12,53 @@
   </.modal>
 <% end %>
 
-<div class="bg-unsplash-[RHpuSz0]">
-  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+<div class="flex justify-center items-center my-24">
+  <div class="w-8/12 bg-white shadow overflow-hidden sm:rounded-lg">
     <div class="px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">Your Feed</h3>
       <p class="mt-1 max-w-2xl text-sm text-gray-500"></p>
     </div>
     <div class="border-t border-gray-200">
       <dl>
+
         <%= for {post, counter} <- Enum.with_index(@posts) do %>
+        
           <%= raw "<div class=" <> if rem(counter, 2) != 0, do: "\"bg-white px-4 py-5\">", else: "\"bg-gray-50 px-4 py-5\">" %>
-            <div class="bg-[url('https://images.unsplash.com/photo-1648636102089-4af17a90e18e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2113&q=80')] w-full h-full flex p-4">
-              <div class="rounded-full border-black border-2 flex w-12 h-12 mr-3">
-              <!--<img class="w-full object-contain min-h-0" src="https://images.unsplash.com/photo-1648636102089-4af17a90e18e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2113&q=80" >-->
-                
+
+            <div class="w-full h-full flex p-4">
+              <div class="bg-[url('https://images.unsplash.com/photo-1648693956698-ad30bf033b35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-contain rounded-full border-black border-0.5 flex w-12 h-12 mr-3">
               </div>
-              <div class="text-area">
-                <p><%= post.user %></p>
-                <p style="white-space: pre-line"><%= post.content %></p>
-                <p><%= counter %></p>
+              <div>
+                <div class="text-area">
+                  <p><%= post.user %></p>
+                  <p style="white-space: pre-line"><%= post.content %></p>
+                  <p><%= counter %></p>
+                </div>
+                <div class="mt-4">
+                  <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 stroke-indigo-700 stroke-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </button>
+                  <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-4 h-7 w-7 stroke-indigo-700 stroke-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                  </button>
+                  <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-4 h-7 w-7 stroke-indigo-700 stroke-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
+
+          
           <%= raw "</div>" %>
+          
         <%= end %>
+          
       </dl>
     </div>
   </div>

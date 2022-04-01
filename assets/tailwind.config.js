@@ -10,7 +10,6 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/forms'),
-    require('tailwind-unsplash')
+    require('@tailwindcss/forms')
   ]
 }
